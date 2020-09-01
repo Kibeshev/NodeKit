@@ -57,7 +57,7 @@ open class ResponseHttpErrorProcessorNode<Type>: Node<UrlDataResponse, Type> {
             return context.emit(error: HttpError.forbidden(data.data))
         case 404:
             return context.emit(error: HttpError.notFound)
-        case 500:
+        case 500...599:
             return context.emit(error: HttpError.internalServerError(data.data))
         default:
             break
